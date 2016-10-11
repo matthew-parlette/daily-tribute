@@ -1,3 +1,22 @@
 <p>Current Cards: <%= @cards.count %></p>
 
 <a href="<%= new_card_path %>">Add Card</a>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @cards.each do |card| %>
+      <tr>
+        <td><%= link_to truncate(card.title, length: 15), card_path(card) %></td>
+        <td><%= link_to truncate(card.description, length: 15), card_path(card) %></td>
+        <td><%= link_to 'Edit', edit_card_path(card) %></td>
+        <td><%= link_to 'Delete', card_path(card),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>

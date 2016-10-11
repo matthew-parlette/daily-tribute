@@ -12,6 +12,7 @@ class CardsController < ApplicationController
   end
 
   def new
+    @card = Card.new
   end
 
   def edit
@@ -25,6 +26,10 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @card = Card.find(params[:id])
+    @card.destroy
+
+    redirect_to cards_admin_url
   end
 
   def admin
