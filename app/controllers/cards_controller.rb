@@ -3,6 +3,12 @@ class CardsController < ApplicationController
   end
 
   def create
+    @card = Card.new(params.require(:card).permit(
+        :title, :description
+    ))
+
+    @card.save
+    redirect_to cards_admin_url
   end
 
   def new
