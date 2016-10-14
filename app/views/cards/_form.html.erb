@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <%= form_for :card, url: cards_path, html: {:class => 'col-md-9 go-right'} do |f| %>
+
+        <% if @card.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@card.errors.count, 'error') %> prohibited
+                this card from being saved:
+              </h2>
+              <ul>
+                <% @card.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <p>
+          <div class="form-group">
+            <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
+            <%= f.label :title %>
+          </div>
+        </p>
+
+        <p>
+          <div class="form-group">
+            <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
+            <%= f.label :description %>
+          </div>
+        </p>
+
+        <p>
+          <%= f.submit %>
+        </p>
+    <% end %>
+  </div>
+</div>
