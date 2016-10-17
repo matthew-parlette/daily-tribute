@@ -3,8 +3,8 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="card">
         <div class="card-image">
-          <% if FileTest.exist?(Rails.root.join('app/assets/images', "#{@card.id}.jpg")) %>
-          <img class="img-responsive center-block" src="<%= image_url("#{@card.id}.jpg") %>">
+          <% if FileTest.exist?(Rails.root.join('public', "#{@card.id}.jpg")) %>
+          <img class="img-responsive center-block" src="<%= "#{root_url}#{@card.id}.jpg" %>">
           <% end %>
 
         </div><!-- card image -->

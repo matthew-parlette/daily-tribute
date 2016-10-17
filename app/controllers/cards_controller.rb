@@ -8,6 +8,13 @@ class CardsController < ApplicationController
     ))
 
     @card.save
+
+    uploaded_io = params[:card][:media]
+    # File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    File.open(Rails.root.join('public', @card.id.to_s + '.jpg'), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+
     redirect_to cards_admin_url
   end
 
