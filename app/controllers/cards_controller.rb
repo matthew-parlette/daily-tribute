@@ -29,6 +29,28 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
+  def date
+    @card = Card.where(:year => params[:year])
+    @card = @card.where(:month => params[:month])
+    @card = @card.where(:day => params[:day])
+    if @card.length == 1
+      @card = @card.first
+    else
+      render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
+    end
+  end
+
+  def today
+    @card = Card.where(:year => Time.zone.today.year)
+    @card = @card.where(:month => Time.zone.today.month)
+    @card = @card.where(:day => Time.zone.today.day)
+    if @card.length == 1
+      @card = @card.first
+    else
+      render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
+    end
+  end
+
   def update
   end
 
