@@ -4,7 +4,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="<%= cards_path %>"><i class="fa fa-picture-o fa-fw"></i>Cards <span class="badge badge-info"><%= @cards.count %></span></a></li>
         <li><a href="<%= new_card_path %>"><i class="fa fa-plus-circle fa-fw"></i>New Card</a></li>
-        <li><a href=""><i class="fa fa-calendar fa-fw"></i>Calender</a></li>
+        <li><a href="<%= Time.zone.now.year %>/<%= Time.zone.now.month %>/<%= Time.zone.now.day %>"><i class="fa fa-calendar fa-fw"></i>Today</a></li>
         <li><a href=""><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
       </ul>
     </div>
@@ -23,7 +23,7 @@
         <tr>
           <td><%= link_to truncate(card.title, length: 15), card_path(card) %></td>
           <td><%= link_to truncate(card.description, length: 25), card_path(card) %></td>
-          <td><span class="label label-info">Inactive</span></td>
+          <td><% if card.year %><span class="label label-success"><%= card.year %>-<%= card.month %>-<%= card.day %></span><% else %><span class="label label-info">Inactive</span><% end %></td>
           <td><%= link_to 'Edit', edit_card_path(card) %></td>
           <td><%= link_to 'Delete', card_path(card),
                           method: :delete,
