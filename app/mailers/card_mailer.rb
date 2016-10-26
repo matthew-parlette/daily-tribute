@@ -11,6 +11,7 @@ class CardMailer < ApplicationMailer
       render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
       @card = nil
     end
+    attachments["#{Time.zone.today.year}-#{Time.zone.today.month}-#{Time.zone.today.day}.jpg"] = File.read(Rails.root.join('public', "#{@card.id}.jpg"))
     mail(:to => ENV['recipient'], :subject => 'daily')
   end
 end
