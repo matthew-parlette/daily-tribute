@@ -26,3 +26,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+/config/sources.yml
+/config/eras.yml
