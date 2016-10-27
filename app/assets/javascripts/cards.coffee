@@ -3,11 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # Card
-$ ->
-  $('#show').on 'click', ->
-    $('.card-reveal').slideToggle 'slow'
-    return
-  $('.card-reveal .close').on 'click', ->
-    $('.card-reveal').slideToggle 'slow'
-    return
+$(document).ready ->
+  $('select').material_select()
   return
