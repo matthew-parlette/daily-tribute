@@ -26,6 +26,11 @@
           <%= f.label :description %>
         </div>
 
+        <div class="input-field col s12">
+          <%= collection_select :card, :source, Source.all, :id, :name %>
+          <%= f.label :source %>
+        </div>
+
         <div class="file-field input-field col s12">
           <div class="btn">
             <span>Picture</span>
