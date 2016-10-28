@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="<%= cards_path %>"><i class="fa fa-picture-o fa-fw"></i>Cards <span class="badge badge-info"><%= @cards.count %></span></a></li>
+        <li><a href="<%= new_card_path %>"><i class="fa fa-plus-circle fa-fw"></i>New Card</a></li>
+        <li><a href="<%= Time.zone.now.year %>/<%= Time.zone.now.month %>/<%= Time.zone.now.day %>"><i class="fa fa-calendar fa-fw"></i>Today</a></li>
+        <li><a href="<%= root_url %>rails/mailers/card_mailer/daily.html" target="_blank"><i class="fa fa-envelope fa-fw"></i>Preview Email</a></li>
+        <li><a href=""><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
+      </ul>
+    </div>
+    <div class="col-md-9 well">
+      <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @cards.each do |card| %>
+        <tr>
+          <td><%= link_to truncate(card.title, length: 15), card_path(card) %></td>
+          <td><%= link_to truncate(card.description, length: 25), card_path(card) %></td>
+          <td><% if card.year %><span class="label label-success"><%= card.year %>-<%= card.month %>-<%= card.day %></span><% else %><span class="label label-info">Inactive</span><% end %></td>
+          <td><%= link_to 'Edit', edit_card_path(card) %></td>
+          <td><%= link_to 'Delete', card_path(card),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

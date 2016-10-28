@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col s12 m7">
+    <div class="card horizontal small blue-grey darken-1">
+      <div class="card-image">
+        <% if FileTest.exist?(Rails.root.join('public', "#{@card.id}.jpg")) %>
+            <%= image_tag "#{root_url}#{@card.id}.jpg" %>
+        <% end %>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content white-text">
+          <span class="card-title"><%= @card.title %></span>
+          <p><%= @card.description %></p>
+        </div>
+        <div class="card-action">
+          <% if @card.source %>
+            <a href="#" class="chip black-text">
+              <%= image_tag "#{root_url}/sources/#{@card.source}.jpg" %>
+              <%= Source.find(@card.source).name %>
+            </a>
+          <% end %>
+          <% if @card.era %>
+              <a href="#" class="chip black-text">
+                <%= Era.find(@card.era).name %>
+              </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

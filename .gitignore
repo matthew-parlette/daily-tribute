@@ -19,3 +19,13 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+.idea/workspace.xml
+.idea/tasks.xml
+.idea
+
+# Ignore application configuration
+/config/application.yml
+
+/config/sources.yml
+/config/eras.yml

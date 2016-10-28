@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col s12 m6">
+    <div class="card horizontal small blue-grey darken-1">
+      <div class="card-image">
+        <%= image_tag attachments["#{Time.zone.today.year}-#{Time.zone.today.month}-#{Time.zone.today.day}.jpg"].url %>
+      </div>
+      <div class="card-stacked">
+      <div class="card-content white-text">
+        <span class="card-title"><%= @card.title %></span>
+        <p><%= @card.description %></p>
+      </div>
+      <div class="card-action black-text">
+        <% if @card.source %>
+            <a href="#" class="chip">
+              <%= Source.find(@card.source).name %>
+            </a>
+        <% end %>
+        <% if @card.era %>
+            <a href="#" class="chip black-text">
+              <%= Era.find(@card.era).name %>
+            </a>
+        <% end %>
+      </div>
+        </div>
+    </div>
+  </div>
+</div>
