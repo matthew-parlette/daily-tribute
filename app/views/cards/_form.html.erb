@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <%= form_for :card, url: cards_path, html: {:class => 'col s12'} do |f| %>
+    <%= form_for @card, html: {:class => 'col s12'} do |f| %>
       <div class="row">
         <% if @card.errors.any? %>
             <div id="error_explanation">
