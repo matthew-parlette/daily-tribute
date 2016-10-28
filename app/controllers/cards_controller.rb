@@ -4,7 +4,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(params.require(:card).permit(
-        :title, :description, :source
+        :title, :description, :source, :era
     ))
 
     @card.save

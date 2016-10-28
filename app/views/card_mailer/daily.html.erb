@@ -15,6 +15,11 @@
               <%= Source.find(@card.source).name %>
             </a>
         <% end %>
+        <% if @card.era %>
+            <a href="#" class="chip black-text">
+              <%= Era.find(@card.era).name %>
+            </a>
+        <% end %>
       </div>
         </div>
     </div>

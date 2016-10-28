@@ -26,9 +26,13 @@
           <%= f.label :description %>
         </div>
 
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <%= collection_select :card, :source, Source.all, :id, :name %>
           <%= f.label :source %>
+        </div>
+        <div class="input-field col s6">
+          <%= collection_select :card, :era, Era.all, :id, :name %>
+          <%= f.label :era %>
         </div>
 
         <div class="file-field input-field col s12">

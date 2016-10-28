@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027221804) do
+ActiveRecord::Schema.define(version: 20161027235746) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20161027221804) do
     t.integer  "month"
     t.integer  "day"
     t.integer  "source"
+    t.integer  "era"
   end
 
 end
