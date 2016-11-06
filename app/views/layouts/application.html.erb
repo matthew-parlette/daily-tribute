@@ -11,6 +11,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'cards/menu' %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <%= link_to('Login / Sign-up', new_user_session_path, class: 'waves-effect waves-light btn')  %>
+            <%= link_to('Logout', destroy_user_session_path, class: 'waves-effect waves-light btn')  %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

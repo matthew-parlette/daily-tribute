@@ -27,11 +27,15 @@
         </div>
 
         <div class="input-field col s6">
-          <%= collection_select :card, :source, Source.all, :id, :name %>
+          <% if current_user.role == 1 %>
+          <%= collection_select :card, :source, User.where.not(role: 2), :id, :name %>
+          <% else %>
+          <%= collection_select :card, :source, User.where(id: current_user.id), :id, :name %>
+          <% end %>
           <%= f.label :source %>
         </div>
         <div class="input-field col s6">
-          <%= collection_select :card, :era, Era.all, :id, :name %>
+          <%= collection_select :card, :era, Era.all, :id, :name, prompt: true %>
           <%= f.label :era %>
         </div>
 

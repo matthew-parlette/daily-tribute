@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # Card
-$(document).ready ->
+ready = ->
   $('select').material_select()
+  Materialize.updateTextFields()
   return
+
+$(document).ready(ready)
+$(document).on('turbolinks:load', ready)
