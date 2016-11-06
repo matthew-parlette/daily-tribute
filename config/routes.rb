@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
 
   get 'cards/admin', to: 'cards#admin'
   get 'cards/:year/:month/:day', to: 'cards#date'
@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   resources :cards
 
-  root 'cards#index'
+  root to: 'cards#index'
 end
