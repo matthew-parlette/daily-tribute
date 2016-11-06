@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {registrations: 'registrations'}
 
   get 'cards/admin', to: 'cards#admin'
   get 'cards/:year/:month/:day', to: 'cards#date'

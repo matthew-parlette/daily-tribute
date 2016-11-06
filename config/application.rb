@@ -14,6 +14,6 @@ module DailyTribute
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.default_timezone = :local
 
-    config.action_mailer.asset_host = 'http://localhost:3000'
+    config.action_mailer.asset_host = ENV['default_url_host']
   end
 end
