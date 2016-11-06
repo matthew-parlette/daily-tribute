@@ -1,13 +1,22 @@
 class CardsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
+    case Role.find(current_user.role).name
+      when 'Admin'
+        @cards = Card.all
+      when 'Contributor'
+        @cards = Card.where(source: current_user.id)
+        render 'admin'
+      when 'Target'
+        render 'admin'
+    end
   end
 
   def create
     @card = Card.new(card_params)
 
-    if @card.save
-      redirect_to cards_admin_url
-    else
+    if !@card.save
       render 'new'
     end
 
@@ -19,7 +28,7 @@ class CardsController < ApplicationController
       end
     end
 
-    redirect_to cards_admin_url
+    redirect_to card_url(@card)
   end
 
   def new
@@ -68,7 +77,7 @@ class CardsController < ApplicationController
     end
 
     if @card.update(card_params)
-      redirect_to cards_admin_url
+      redirect_to card_url(@card)
     else
       render 'edit'
     end
@@ -78,7 +87,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @card.destroy
 
-    redirect_to cards_admin_url
+    redirect_to cards_url
   end
 
   def admin

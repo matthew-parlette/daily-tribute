@@ -1,0 +1,35 @@
+<% if [1, 3].include? current_user.role %>
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>Viewed Cards</h4></li>
+    <% @cards.each do |c| %>
+        <% if c.year %>
+            <li class="collection-item">
+              <div>
+                <%= link_to c.title, card_path(c) %>
+                <div class="chip"><%= c.year %>-<%= c.month %>-<%= c.day %></div>
+                <%= link_to '<i class="material-icons secondary-content">delete</i>'.html_safe, card_path(c), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to '<i class="material-icons secondary-content">mode_edit</i>'.html_safe, edit_card_path(c) %>
+                <%= link_to '<i class="material-icons secondary-content">zoom_in</i>'.html_safe, card_path(c) %>
+              </div>
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>Unseen Cards</h4></li>
+    <% @cards.each do |c| %>
+      <% if c.year.nil? %>
+        <li class="collection-item">
+          <div>
+            <%= link_to c.title, card_path(c) %>
+            <%= link_to '<i class="material-icons secondary-content">delete</i>'.html_safe, card_path(c), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '<i class="material-icons secondary-content">mode_edit</i>'.html_safe, edit_card_path(c) %>
+            <%= link_to '<i class="material-icons secondary-content">zoom_in</i>'.html_safe, card_path(c) %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <%# Target %>
+<% end %>
