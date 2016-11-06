@@ -1,0 +1,11 @@
+<div class="fixed-action-btn">
+  <%= link_to ('<i class="large material-icons">menu</i>').html_safe, cards_path, class: 'btn-floating btn-large red' %>
+  <ul>
+    <% unless (@card.nil?) || (@card.id.nil?) %>
+    <li><%= link_to ('<i class="material-icons">delete</i>').html_safe, "/cards/#{@card.id}", class: 'btn-floating red', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li><%= link_to ('<i class="material-icons">mode_edit</i>').html_safe, "/cards/#{@card.id}/edit", class: 'btn-floating yellow darken-1' %></li>
+    <% end %>
+    <!--<li><%= link_to ('<i class="material-icons">library_add</i>').html_safe, new_card_path, class: 'btn-floating green' %></li>-->
+    <li><%= link_to ('<i class="material-icons">add</i>').html_safe, new_card_path, class: 'btn-floating blue' %></li>
+  </ul>
+</div>
