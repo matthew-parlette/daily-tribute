@@ -11,4 +11,4 @@ RUN bundle install
 COPY . .
 
 EXPOSE 3000
-CMD rake db:create db:migrate && rails server -b 0.0.0.0
+CMD rake db:setup && rails server -b 0.0.0.0
