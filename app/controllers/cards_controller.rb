@@ -1,5 +1,17 @@
 class CardsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
+    case Role.find(current_user.role).name
+      when 'Admin'
+        @cards = Card.all
+        render 'admin'
+      when 'Contributor'
+        @cards = Card.where(source: current_user.id)
+        render 'admin'
+      when 'Target'
+        render 'admin'
+    end
   end
 
   def create
