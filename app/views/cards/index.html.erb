@@ -1,4 +1,5 @@
 <% if [1, 3].include? current_user.role %>
+    <% if current_user.role == 3 %><h5 class="center-align">Your Contributions</h5><% end %>
   <ul class="collection with-header">
     <li class="collection-header"><h4>Viewed Cards</h4></li>
     <% @cards.each do |c| %>

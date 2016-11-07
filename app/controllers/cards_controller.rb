@@ -7,9 +7,8 @@ class CardsController < ApplicationController
         @cards = Card.all
       when 'Contributor'
         @cards = Card.where(source: current_user.id)
-        render 'admin'
       when 'Target'
-        render 'admin'
+        @cards = Card.where.not(year: nil)
     end
   end
 
