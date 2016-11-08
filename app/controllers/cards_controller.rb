@@ -7,9 +7,8 @@ class CardsController < ApplicationController
         @cards = Card.all
       when 'Contributor'
         @cards = Card.where(source: current_user.id)
-        render 'admin'
       when 'Target'
-        render 'admin'
+        @cards = Card.where.not(year: nil)
     end
   end
 
@@ -37,10 +36,12 @@ class CardsController < ApplicationController
 
   def edit
     @card = Card.find(params[:id])
+    render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false) unless user_can_view?
   end
 
   def show
     @card = Card.find(params[:id])
+    render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false) unless user_can_view?
   end
 
   def date
@@ -52,6 +53,7 @@ class CardsController < ApplicationController
     else
       render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
     end
+    render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false) unless user_can_view?
   end
 
   def today
@@ -63,10 +65,12 @@ class CardsController < ApplicationController
     else
       render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false)
     end
+    render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false) unless user_can_view?
   end
 
   def update
     @card = Card.find(params[:id])
+    render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false) unless user_can_view?
 
     if params[:card].key?('media')
       uploaded_io = params[:card][:media]
@@ -85,6 +89,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card = Card.find(params[:id])
+    render(:file => File.join(Rails.root, 'public/404.html'), :status => 404, :layout => false) unless user_can_view?
     @card.destroy
 
     redirect_to cards_url
@@ -95,9 +100,22 @@ class CardsController < ApplicationController
   end
 
   private
-    def card_params
-      params.require(:card).permit(
-          :title, :description, :source, :era
-      )
+  def card_params
+    params.require(:card).permit(
+        :title, :description, :source, :era
+    )
+  end
+
+  def user_can_view?
+    unless @card
+      return false
     end
+    if current_user.id == @card.source
+      true
+    elsif current_user.role == 1
+      true
+    else
+      false
+    end
+  end
 end

@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
 
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,12 +13,11 @@
   <body>
     <%= render 'cards/menu' %>
     <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Logo</a>
+      <div class="nav-wrapper green lighten-4">
+        <a href="<%= cards_path %>" class="brand-logo black-text" style="margin-left: 1em;"><i class="material-icons">home</i></a>
         <ul class="right hide-on-med-and-down">
           <li>
-            <%= link_to('Login / Sign-up', new_user_session_path, class: 'waves-effect waves-light btn')  %>
-            <%= link_to('Logout', destroy_user_session_path, class: 'waves-effect waves-light btn')  %>
+            <%= render partial: 'users/shared/login_items' %>
           </li>
         </ul>
       </div>
