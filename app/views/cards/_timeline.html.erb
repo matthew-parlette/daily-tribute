@@ -1,0 +1,22 @@
+<section id="cd-timeline">
+  <% cards.each do |c| %>
+    <% if c.year %>
+      <div class="cd-timeline-block">
+        <div class="cd-timeline-img">
+          <% if FileTest.exist?(Rails.root.join('public', 'sources', "#{c.source}.jpg")) %>
+            <%= image_tag "#{root_url}/sources/#{c.source}.jpg", alt: User.where(id: c.source).name %>
+          <% else %>
+            <i class="material-icons medium">perm_identity</i>
+          <% end %>
+        </div>
+
+        <div class="cd-timeline-content">
+          <h2><%= link_to c.title, card_path(c) %></h2>
+          <p><%= c.description %></p>
+          <%= link_to '<i class="material-icons">zoom_in</i>'.html_safe, card_path(c), class: 'cd-read-more' %>
+          <span class="cd-date"><%= c.year %>-<%= c.month %>-<%= c.day %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</section>
