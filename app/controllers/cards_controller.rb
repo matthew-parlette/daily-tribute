@@ -4,11 +4,11 @@ class CardsController < ApplicationController
   def index
     case Role.find(current_user.role).name
       when 'Admin'
-        @cards = Card.all
+        @cards = Card.all.order(year: :desc, month: :desc, day: :desc)
       when 'Contributor'
-        @cards = Card.where(source: current_user.id)
+        @cards = Card.where(source: current_user.id).order(year: :desc, month: :desc, day: :desc)
       when 'Target'
-        @cards = Card.where.not(year: nil)
+        @cards = Card.where.not(year: nil).order(year: :desc, month: :desc, day: :desc)
     end
   end
 
