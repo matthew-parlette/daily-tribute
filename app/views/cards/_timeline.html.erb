@@ -12,8 +12,7 @@
 
         <div class="cd-timeline-content">
           <h2><%= link_to c.title, card_path(c) %></h2>
-          <p><%= c.description %></p>
-          <%= link_to '<i class="material-icons">zoom_in</i>'.html_safe, card_path(c), class: 'cd-read-more' %>
+          <p class="truncate"><%= c.description %></p>
           <span class="cd-date"><%= c.year %>-<%= c.month %>-<%= c.day %></span>
         </div>
       </div>
