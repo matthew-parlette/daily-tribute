@@ -28,11 +28,14 @@ namespace :user do
     puts 'Email address:'
     fields[:email] = STDIN.gets
     puts 'Password:'
-    fields[:password] = STDIN.gets
+    fields[:password] = STDIN.gets.encrypted_password
+    puts 'Confirm Password:'
+    fields[:password_confirmation] = STDIN.gets.encrypted_password
     return fields
   end
 
   def create_user
+    puts "Creating user with fields #{@fields}"
     if User.create(@fields)
       puts "Created user #{@fields[:name]}"
     else

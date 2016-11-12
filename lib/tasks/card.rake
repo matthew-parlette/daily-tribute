@@ -13,4 +13,9 @@ namespace :card do
     end
   end
 
+  desc 'Email the card for today to the target'
+  task email: :environment do
+    CardMailer.daily.deliver_now
+  end
+
 end

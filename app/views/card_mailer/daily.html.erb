@@ -5,23 +5,21 @@
         <%= image_tag attachments["#{Time.zone.today.year}-#{Time.zone.today.month}-#{Time.zone.today.day}.jpg"].url %>
       </div>
       <div class="card-stacked">
-      <div class="card-content white-text">
-        <span class="card-title"><%= @card.title %></span>
-        <p><%= @card.description %></p>
-      </div>
-      <div class="card-action black-text">
-        <% if @card.source %>
-            <a href="#" class="chip">
-              <%= Source.find(@card.source).name %>
-            </a>
-        <% end %>
-        <% if @card.era %>
-            <a href="#" class="chip black-text">
-              <%= Era.find(@card.era).name %>
-            </a>
-        <% end %>
-      </div>
+        <div class="card-content white-text">
+          <span class="card-title"><%= link_to @card.title, card_url(@card) %></span>
+          <p><%= @card.description %></p>
         </div>
+      </div>
     </div>
   </div>
 </div>
+<ul class="collection">
+  <%= link_to root_url, class: 'collection-item' do %>
+    <%= image_tag "#{root_url}sources/#{@card.source}.jpg", class: 'circle left' %>
+    <span class="title"><%= User.find(@card.source).name %></span>
+  <% end %>
+  <%= link_to root_url, class: 'collection-item' do %>
+    <%= image_tag "#{root_url}calendar-icon.png", class: 'circle left' %>
+    <span class="title"><%= Era.find(@card.era).name %></span>
+  <% end %>
+</ul>
