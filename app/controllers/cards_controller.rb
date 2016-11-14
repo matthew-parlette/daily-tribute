@@ -114,6 +114,8 @@ class CardsController < ApplicationController
       true
     elsif current_user.role == 1
       true
+    elsif (current_user.role == 2) && (@card.year != nil)
+      true
     else
       false
     end
