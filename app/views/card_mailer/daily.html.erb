@@ -1,9 +1,11 @@
 <div class="row">
   <div class="col s12 m6">
     <div class="card horizontal small blue-grey darken-1">
+      <% if attachments["#{Time.zone.today.year}-#{Time.zone.today.month}-#{Time.zone.today.day}.jpg"].present? %>
       <div class="card-image">
         <%= image_tag attachments["#{Time.zone.today.year}-#{Time.zone.today.month}-#{Time.zone.today.day}.jpg"].url %>
       </div>
+      <% end %>
       <div class="card-stacked">
         <div class="card-content white-text">
           <span class="card-title"><%= link_to @card.title, card_url(@card) %></span>
