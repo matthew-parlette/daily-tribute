@@ -28,3 +28,8 @@
 /config/application.yml
 
 /config/sources.yml
+
+public/*
+!/public/.keep
+
+vendor/bundle/*
